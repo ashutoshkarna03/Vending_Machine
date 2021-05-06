@@ -15,7 +15,7 @@ app.use(express.json())
 app.get('/', (req,res) => res.send('Hello World'));
 
 
-const uri: string = 'process.env.ATLAS_URI';
+const uri: string = process.env.MONGODB_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
 );
 const connection = mongoose.connection;
