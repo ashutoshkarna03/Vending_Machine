@@ -4,7 +4,7 @@ services:
     image: mongo:4.2
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: cBhbNKEtze0hmMfriEJ
+      MONGO_INITDB_ROOT_PASSWORD: pL=4&)7X-L-+WbU
     ports:
       - 27017:27017
     volumes:
