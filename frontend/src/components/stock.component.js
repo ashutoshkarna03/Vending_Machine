@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import axios from 'axios';
-
-// const Exercise = props => (
-//   <tr>
-//     <td>{props.exercise.username}</td>
-//     <td>{props.exercise.description}</td>
-//     <td>{props.exercise.duration}</td>
-//     <td>{props.exercise.date.substring(0,10)}</td>
-//     <td>
-//       <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => { props.deleteExercise(props.exercise._id) }}>delete</a>
-//     </td>
-//   </tr>
-// )
 
 export default class Stock extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {exercises: []};
+    this.state = {
+      itemStock: {
+        coke: 10,
+        dew: 10,
+        pepsi: 10
+      },
+      coinStock: 100
+    };
   }
 
   
@@ -27,6 +22,20 @@ export default class Stock extends Component {
     return (
       <div>
         <h3>Stock</h3>
+        <div>
+          <h4>Items Stock</h4>
+          <ul>
+            <li>Coke: {this.state.itemStock.coke}</li>
+            <li>Pepsi: {this.state.itemStock.pepsi}</li>
+            <li>Dew: {this.state.itemStock.dew}</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Coin Stock</h4>
+          <ul>
+            <li>Coin: {this.state.coinStock}</li>
+          </ul>
+        </div>
       </div>
     )
   }
