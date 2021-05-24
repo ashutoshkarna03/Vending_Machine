@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-// import axios from 'axios';
+import axios from 'axios';
 
 export default class Stock extends Component {
   constructor(props) {
@@ -14,6 +14,18 @@ export default class Stock extends Component {
       },
       coinStock: 100
     };
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:5050/stock/get-stock/')
+      .then(response => {
+        console.log(response.data) 
+        let data = response.data.data
+        this.setState({ itemStock: data.itemStock, coinStock: data.coinStock, })
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   
