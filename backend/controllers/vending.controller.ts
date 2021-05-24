@@ -1,5 +1,6 @@
 
 import Vending, { IVending } from '../models/vending.model';
+import Stock, { IStock } from '../models/stock.model';
 import * as stockController from './stock.controller';
 
 interface RateInterface {
@@ -46,10 +47,46 @@ export async function CreateTransaction(itemToGet: string, coinEntered: number) 
         return {data: {}, message: 'Coin is not enough to buy this item, please try again'}
     }
 
-    const returnChange : number = 0
     // perform the transaction and calculate returnChange if any
-    
+    const returnChange : number = coinEntered - itemPrice
+    const newCoinStock : number = itemPrice + stock.coinStock
 
-    return {data: 'world', message: 'world'}
+    // decrease corresponding item stock
+    const itemStockCopy = stock.itemStock
+    itemStockCopy[itemToGet] = itemStockCopy[itemToGet] - 1
+
+    const newItemStock : object = itemStockCopy
+
+    // save transaction first
+    await saveTransaction(itemToGet, coinEntered, returnChange)
+
+    // also update stock
+    await updateStock(newItemStock, newCoinStock, returnChange)
+
+    return {data: {
+        itemBought: itemToGet,
+        returnChange
+    }, message: 'Successfully Bought'}
 }
 
+async function saveTransaction(itemPurchased: string, coinEntered: number, returnChange: number) {
+    const vending: IVending = new Vending({
+        itemPurchased,
+        coinEntered,
+        returnChange,
+    });
+
+    await vending.save();
+}
+
+async function updateStock(newItemStock: object, newCoinStock: number, returnChange: number) {
+    await Stock.updateMany(
+        {},
+        {
+            $set: {
+                coinStock: newCoinStock,
+                itemStock: newItemStock
+            },
+        }
+    )
+}

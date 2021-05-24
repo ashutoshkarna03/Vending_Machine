@@ -8,7 +8,7 @@ export interface IVending extends Document {
 }
 
 const VendingSchema: Schema = new Schema({
-    itemPurchased: { required: true },
+    itemPurchased: { type: String, required: true },
     coinEntered: { type: Number, required: true },
     returnChange: { type: Number, required: true },
 }, { timestamps: true });
