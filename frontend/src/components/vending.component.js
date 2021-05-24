@@ -51,7 +51,7 @@ export default class Vending extends Component {
         <br></br>
           <h5>Your Transaction Summary</h5>
           <p>You got one {this.state.itemPurchased} at Rs. {this.state.pricePaid}</p>
-          <p>And received change of Rs. {this.state.returnChange}</p>
+          <p>And received return change of Rs. {this.state.returnChange}</p>
         </div>
       </div>
     )

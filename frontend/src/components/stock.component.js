@@ -31,9 +31,9 @@ export default class Stock extends Component {
           </ul>
         </div>
         <div>
-          <h4>Coin Stock</h4>
+          <h4>Coins Stock</h4>
           <ul>
-            <li>Coin: {this.state.coinStock}</li>
+            <li>Coins: {this.state.coinStock}</li>
           </ul>
         </div>
       </div>
