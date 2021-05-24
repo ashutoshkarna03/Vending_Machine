@@ -1,5 +1,5 @@
 import { TRoutesInput } from '../types/routes';
-import * from '../controllers/stock.controller';
+import * as stockController from '../controllers/stock.controller';
 
 export default ({ app }: TRoutesInput) => {
 
@@ -8,34 +8,18 @@ export default ({ app }: TRoutesInput) => {
     app.post('/stock/create-stock', async (req, res) => {
         const itemStock: object = req.body.itemStock
         const coinStock: number = req.body.coinStock
-        await CreateStock(
+        await stockController.CreateStock(
             itemStock,
             coinStock,
         );
-        res.send('Stock saved');
-    })
-
-    app.post('/stock/create-stock', async (req, res) => {
-        const itemStock: object = req.body.itemStock
-        const coinStock: number = req.body.coinStock
-        await CreateStock(
-            itemStock,
-            coinStock,
-        );
-        res.send({
-            success: true,
-            message: "Stock saved"
-        });
+        res.send({message:'Stock saved'});
     })
 
     app.get('/stock/get-stock', async (req, res) => {
-        await GetStock(
-            itemStock,
-            coinStock,
-        );
+        const data : object = await stockController.GetStock();
         res.send({
             success: true,
-            message: "Stock saved"
+            data
         });
     })
 
