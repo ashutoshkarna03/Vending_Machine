@@ -9,22 +9,22 @@
 
 1. Backend:
 
-cd backend
-nano .env (put the values in same format as .env.example)
-npm install
-npm start
+- cd backend
+- nano .env (put the values in same format as .env.example)
+- npm install
+- npm start
 
 To run as docker container, use Dockerfile
 
 2. Backend:
 
-cd frontend \n
-npm install
-npm start
+- cd frontend
+- npm install
+- npm start
 
 To run as docker container, use Dockerfile
 
 3. Database:
 
-cd mongodb
-docker-compose up -d
+- cd mongodb
+- docker-compose up -d
