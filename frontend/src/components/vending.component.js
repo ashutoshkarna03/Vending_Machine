@@ -45,13 +45,16 @@ export default class Vending extends Component {
         console.log(res.data);
         if (res.data.data && res.data.data.returnChange) {
           this.setState({
+              itemPurchased: res.data.data.itemBought,
               returnChange: res.data.data.returnChange,
               message: res.data.message
           })
         } else {
           this.setState({
-              returnChange: 'N/A',
-              message: ''
+            itemPurchased: 'N/A',
+            pricePaid: 'N/A',
+            returnChange: 'N/A',
+            message: res.data.message
           })
         }
         
@@ -92,14 +95,15 @@ export default class Vending extends Component {
             <br></br>
           </form>
         </div>
+        <br></br> 
         <div>
           <p>{this.state.message}</p>
         </div>
         <div>
         <br></br>
           <h5>Your Transaction Summary</h5>
-          <p>You got one {this.state.itemPurchased} at Rs. {this.state.pricePaid}</p>
-          <p>And received return change of Rs. {this.state.returnChange}</p>
+          <p>You got one <strong>{this.state.itemPurchased}</strong></p>
+          <p>You entered Rs. {this.state.pricePaid} And received return change of Rs. {this.state.returnChange}</p>
         </div>
       </div>
     )
