@@ -18,7 +18,7 @@ To run as docker container, use Dockerfile
 
 2. Backend:
 
-cd frontend
+cd frontend \n
 npm install
 npm start
 
